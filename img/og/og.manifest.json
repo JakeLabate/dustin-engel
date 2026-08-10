@@ -1,0 +1,22 @@
+{
+  "template": "1",
+  "style": "light",
+  "base_url": "https://jakelabate.github.io/dustin-engel/",
+  "pages": {
+    "about.html": {
+      "image": "img/og/about.png",
+      "fingerprint": "f41e557fbb39a9fd",
+      "title": "About Dustin Engel | Founder of Elegant Disruption"
+    },
+    "contact.html": {
+      "image": "img/og/contact.png",
+      "fingerprint": "c0c4ce62ac8d65d0",
+      "title": "Contact Dustin Engel | Request an Assessment"
+    },
+    "index.html": {
+      "image": "img/og/index.png",
+      "fingerprint": "5ff1d85ae2d21b92",
+      "title": "Dustin Engel | AI-Era Strategy Advisory for Founders"
+    }
+  }
+}
