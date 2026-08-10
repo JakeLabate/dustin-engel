@@ -5,28 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page Not Found | Dustin Engel</title>
 <meta name="description" content="That page does not exist. Head back to the home page for Dustin Engel, founder of Elegant Disruption.">
-<link rel="canonical" href="https://jakelabate.github.io/dustin-engel/404.html">
+<link rel="canonical" href="https://dustin.jakelabate.com/404.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dustin Engel">
 <meta property="og:title" content="Page Not Found | Dustin Engel">
 <meta property="og:description" content="That page does not exist. Head back to the home page for Dustin Engel, founder of Elegant Disruption.">
-<meta property="og:url" content="https://jakelabate.github.io/dustin-engel/404.html">
-<meta property="og:image" content="https://jakelabate.github.io/dustin-engel/img/og/index.png">
+<meta property="og:url" content="https://dustin.jakelabate.com/404.html">
+<meta property="og:image" content="https://dustin.jakelabate.com/img/og/index.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Page not found on Dustin Engel's site">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://jakelabate.github.io/dustin-engel/img/og/index.png">
+<meta name="twitter:image" content="https://dustin.jakelabate.com/img/og/index.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://jakelabate.github.io/dustin-engel/404.html#webpage",
-      "url": "https://jakelabate.github.io/dustin-engel/404.html",
+      "@id": "https://dustin.jakelabate.com/404.html#webpage",
+      "url": "https://dustin.jakelabate.com/404.html",
       "name": "Page Not Found | Dustin Engel",
-      "isPartOf": { "@id": "https://jakelabate.github.io/dustin-engel/#website" }
+      "isPartOf": { "@id": "https://dustin.jakelabate.com/#website" }
     }
   ]
 }
@@ -74,6 +74,8 @@ a:hover{text-decoration-thickness:2px}
 .site-nav a{color:var(--ink);text-decoration:none;font-size:0.95rem;font-weight:600}
 .site-nav a:hover{color:var(--brand-text)}
 .site-nav a[aria-current="page"]{color:var(--brand-text)}
+.site-nav a.btn{color:var(--paper)}
+.site-nav a.btn:hover{color:var(--paper)}
 
 /* Buttons */
 .btn{display:inline-block;background:var(--ink);color:var(--paper);font-weight:600;font-size:0.95rem;padding:13px 24px;border-radius:4px;text-decoration:none;border:1px solid var(--ink)}
@@ -124,7 +126,7 @@ a:hover{text-decoration-thickness:2px}
 .faq summary{cursor:pointer;font-weight:600;font-size:1.05rem;padding:22px 36px 22px 0;list-style:none;position:relative}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-family:'Fraunces','Fraunces Fallback',Georgia,serif;font-size:1.4rem;color:var(--brand-text)}
-.faq details[open] summary::after{content:"\2212"}
+.faq details[open] summary::after{content:"2"}
 .faq .answer{padding:0 0 24px;color:var(--muted);max-width:68ch}
 
 /* CTA band */
@@ -145,10 +147,15 @@ a:hover{text-decoration-thickness:2px}
 
 /* About page */
 .bio-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:start}
-.bio-grid img{border-radius:6px}
+.bio-grid > *{min-width:0}
+.bio-grid img{width:100%;height:auto;border-radius:8px;border:1px solid var(--paper-dim)}
+.photo-accent{padding:0 0 14px 14px;position:relative}
+.photo-accent::before{content:"";position:absolute;left:0;bottom:0;width:60%;height:60%;background:var(--brand);border-radius:8px}
+.photo-accent img{position:relative}
 .chapter{display:grid;grid-template-columns:260px 1fr;gap:28px;padding:30px 0;border-top:1px solid var(--paper-dim)}
 .chapter:last-child{border-bottom:1px solid var(--paper-dim)}
 .chapter h3{font-size:1.2rem}
+.chapter .num{font-family:'Fraunces','Fraunces Fallback',Georgia,serif;font-weight:700;color:var(--brand-text);display:block;font-size:1rem;margin-bottom:4px}
 .chapter .org-note{font-size:0.9rem;color:var(--brand-text);font-weight:600}
 .chapter p{color:var(--muted);max-width:60ch}
 .fact-list{list-style:none;margin-top:26px}
@@ -172,7 +179,6 @@ a:hover{text-decoration-thickness:2px}
   .site-nav{gap:16px}
   .site-nav .btn{display:none}
 }
-
 </style>
 </head>
 <body>
@@ -183,6 +189,7 @@ a:hover{text-decoration-thickness:2px}
     <nav class="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
+      <a href="e5.html">E5</a>
       <a href="contact.html">Contact</a>
       <a class="btn" href="contact.html">Request an assessment</a>
     </nav>
