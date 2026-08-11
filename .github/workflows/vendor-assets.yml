@@ -1,0 +1,90 @@
+name: Vendor brand photos
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/vendor-assets.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download and normalize photos from dustinengel.com
+        run: |
+          python3 -m pip install --quiet --upgrade pillow requests
+          python3 - <<'PY'
+          import requests, io, os
+          from PIL import Image
+
+          UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"}
+
+          JOBS = [
+            ("https://images.squarespace-cdn.com/content/v1/50ba5370e4b012760add8272/69d3a59c-a270-4c73-800b-2bd7d4ed9850/DustinEngelHeadshot2024.png?format=1500w",
+             "img/dustin-engel-headshot.png", (900, 1125), "north"),
+            ("https://images.squarespace-cdn.com/content/v1/50ba5370e4b012760add8272/d7fe6933-378a-4394-92a3-abafd1802bb9/150124_ASW_0530.jpg?format=2500w",
+             "img/dustin-engel-speaking.jpg", (1500, 1000), "center"),
+            ("https://images.squarespace-cdn.com/content/v1/50ba5370e4b012760add8272/c5e662ba-fccc-4f4a-8b01-081818b423eb/150124_ASW_0551.jpg?format=2500w",
+             "img/dustin-engel-stage.jpg", (1500, 1000), "center"),
+            ("https://images.squarespace-cdn.com/content/v1/50ba5370e4b012760add8272/9c789078-ac7b-478f-88df-cae22c0e13db/Black.png?format=1500w",
+             "img/logo-black.png", None, None),
+            ("https://static1.squarespace.com/static/50ba5370e4b012760add8272/t/69bd743ffff9563764f8558a/1774023743360/Burnt+Orange.png?format=1500w",
+             "img/logo-orange.png", None, None),
+          ]
+
+          os.makedirs("img", exist_ok=True)
+          ok = fail = 0
+
+          def cover(im, box, anchor):
+            tw, th = box
+            sw, sh = im.size
+            scale = max(tw / sw, th / sh)
+            im = im.resize((max(1, round(sw * scale)), max(1, round(sh * scale))), Image.LANCZOS)
+            nw, nh = im.size
+            left = (nw - tw) // 2
+            top = 0 if anchor == "north" else (nh - th) // 2
+            return im.crop((left, top, left + tw, top + th))
+
+          for url, path, box, anchor in JOBS:
+            try:
+              r = requests.get(url, headers=UA, timeout=90)
+              r.raise_for_status()
+              im = Image.open(io.BytesIO(r.content))
+              im.load()
+              print(f"fetched {path}: {im.size} {im.mode}")
+              if box:
+                im = cover(im.convert("RGB"), box, anchor)
+                if path.endswith(".jpg"):
+                  im.save(path, "JPEG", quality=84, optimize=True, progressive=True)
+                else:
+                  im.save(path, "PNG", optimize=True)
+              else:
+                im = im.convert("RGBA")
+                bbox = im.split()[3].getbbox()
+                if bbox:
+                  im = im.crop(bbox)
+                im.save(path, "PNG", optimize=True)
+              print(f"  wrote {path} {os.path.getsize(path)} bytes")
+              ok += 1
+            except Exception as e:
+              print(f"FAILED {path}: {e}")
+              fail += 1
+
+          print(f"done: {ok} ok, {fail} failed")
+          if ok == 0:
+            raise SystemExit("no assets downloaded")
+          PY
+
+      - name: Commit assets and remove this workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f --ignore-unmatch .github/workflows/vendor-assets.yml
+          git add -A img
+          git commit -m "Vendor Dustin Engel photos and logo from dustinengel.com" || echo "nothing to commit"
+          git push
