@@ -81,14 +81,14 @@
 <style>
 /* Shared styles inlined into every page. Source of truth for the design system. */
 :root{
-  --ink:#1a1713;
+  --ink:#111111;
   --paper:#ffffff;
-  --cream:#faf5ef;
-  --muted:#6b6259;
-  --brand:#cc5500;
-  --brand-text:#bd4f00;
-  --brand-text-dark:#db5b00;
-  --paper-dim:#d8d2ca;
+  --cream:#faf6f2;
+  --muted:#6a625c;
+  --brand:#d85a1a;
+  --brand-text:#bd4f17;
+  --brand-text-dark:#d85a1a;
+  --paper-dim:#d9d3cd;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -112,8 +112,9 @@ a:hover{text-decoration-thickness:2px}
 /* Header */
 .site-header{background:var(--paper);border-bottom:1px solid var(--paper-dim)}
 .nav-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 24px}
-.wordmark{font-family:'Fraunces','Fraunces Fallback',Georgia,serif;font-weight:700;font-size:1.25rem;color:var(--ink);text-decoration:none;letter-spacing:-0.01em}
-.wordmark span{color:var(--brand-text)}
+.wordmark{display:flex;align-items:center;gap:11px;text-decoration:none}
+.wordmark img.mark{width:26px;height:auto}
+.wordmark img.type{width:172px;height:auto}
 .site-nav{display:flex;align-items:center;gap:26px}
 .site-nav a{color:var(--ink);text-decoration:none;font-size:0.95rem;font-weight:600}
 .site-nav a:hover{color:var(--brand-text)}
@@ -180,6 +181,7 @@ a:hover{text-decoration-thickness:2px}
 /* Footer */
 .site-footer{background:var(--ink);color:var(--paper);padding:64px 0 36px}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.footer-mark{width:44px;height:auto;margin-bottom:16px}
 .footer-name{font-family:'Fraunces','Fraunces Fallback',Georgia,serif;font-weight:700;font-size:1.2rem;margin-bottom:10px}
 .footer-sub{color:var(--paper-dim);font-size:0.95rem;max-width:34ch}
 .footer-h{font-size:0.78rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:14px}
@@ -196,6 +198,7 @@ a:hover{text-decoration-thickness:2px}
 .photo-accent{padding:0 0 14px 14px;position:relative}
 .photo-accent::before{content:"";position:absolute;left:0;bottom:0;width:60%;height:60%;background:var(--brand);border-radius:8px}
 .photo-accent img{position:relative}
+.photo-sticky{position:sticky;top:32px}
 .chapter{display:grid;grid-template-columns:260px 1fr;gap:28px;padding:30px 0;border-top:1px solid var(--paper-dim)}
 .chapter:last-child{border-bottom:1px solid var(--paper-dim)}
 .chapter h3{font-size:1.2rem}
@@ -214,6 +217,9 @@ a:hover{text-decoration-thickness:2px}
 .contact-card p{color:var(--muted);font-size:1rem;margin-bottom:14px}
 
 @media (max-width:860px){
+  .photo-sticky{position:static}
+  .wordmark img.type{width:140px}
+  .wordmark img.mark{width:22px}
   .grid-3{grid-template-columns:1fr;gap:30px}
   .row-item,.chapter{grid-template-columns:1fr;gap:8px}
   .bio-grid,.contact-grid{grid-template-columns:1fr;gap:36px}
@@ -224,17 +230,56 @@ a:hover{text-decoration-thickness:2px}
   .site-nav .btn{display:none}
 }
 
+@media (max-width:620px){
+  .nav-row{padding:16px 20px;gap:12px}
+  .wordmark img.type{display:none}
+  .wordmark img.mark{width:28px}
+  .site-nav{gap:15px}
+  .site-nav a{font-size:0.9rem}
+  .wrap{padding:0 20px}
+}
+
+/* Writing list */
+.pieces{margin-top:52px}
+.piece{display:grid;grid-template-columns:170px 1fr;gap:32px;padding:32px 0;border-top:1px solid var(--paper-dim)}
+.piece:last-child{border-bottom:1px solid var(--paper-dim)}
+.piece .meta{font-size:0.85rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--brand-text)}
+.piece .date{display:block;color:var(--muted);font-weight:400;letter-spacing:0.02em;text-transform:none;font-size:0.92rem;margin-top:5px}
+.piece h3{font-size:1.3rem;margin-bottom:9px;max-width:34ch}
+.piece h3 a{color:var(--ink);text-decoration:none}
+.piece h3 a:hover{color:var(--brand-text);text-decoration:underline}
+.piece p{color:var(--muted);max-width:62ch;margin-bottom:12px}
+.piece .go{font-size:0.92rem;font-weight:600}
+.quote{border-left:3px solid var(--brand);padding:2px 0 2px 20px;margin:16px 0 0;font-family:'Fraunces','Fraunces Fallback',Georgia,serif;font-size:1.12rem;line-height:1.45;max-width:48ch;color:var(--ink)}
+/* Deals */
+.deals{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
+.deal{background:var(--paper);border-top:3px solid var(--brand);padding:26px 24px 28px;border-radius:0 0 6px 6px}
+.section-cream .deal{background:var(--paper)}
+.deal h3{font-size:1.25rem;margin-bottom:8px}
+.deal p{color:var(--muted);font-size:0.97rem}
+@media (max-width:860px){
+  .piece{grid-template-columns:1fr;gap:10px}
+  .deals{grid-template-columns:1fr;gap:22px}
+}
+@media (max-width:620px){
+  .site-nav{gap:13px}
+  .site-nav a{font-size:0.86rem}
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap nav-row">
-    <a class="wordmark" href="index.html">Dustin Engel<span>.</span></a>
+    <a class="wordmark" href="index.html" aria-label="Dustin Engel, home">
+      <img class="mark" src="img/logo-orange.png" alt="" width="329" height="244">
+      <img class="type" src="img/logo-black.png" alt="Dustin Engel" width="426" height="47">
+    </a>
     <nav class="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="e5.html" aria-current="page">E5</a>
+      <a href="writing.html">Writing</a>
       <a href="contact.html">Contact</a>
       <a class="btn" href="contact.html">Request an assessment</a>
     </nav>
@@ -324,7 +369,7 @@ a:hover{text-decoration-thickness:2px}
             </div>
           </div>
         </div>
-        <img src="img/dustin-engel-stage.jpg" alt="Dustin Engel speaking about enterprise value on a conference stage" width="1500" height="1000" loading="lazy">
+        <img class="photo-sticky" src="img/dustin-engel-stage.jpg" alt="Dustin Engel on stage during a conference panel discussion" width="1500" height="1000" loading="lazy">
       </div>
     </div>
   </section>
@@ -348,6 +393,7 @@ a:hover{text-decoration-thickness:2px}
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div>
+      <img class="footer-mark" src="img/logo-orange.png" alt="Dustin Engel" width="329" height="244">
       <p class="footer-name">Dustin Engel</p>
       <p class="footer-sub">Founder of Elegant Disruption. Strategy, marketing, and operations leadership for the AI era.</p>
     </div>
@@ -357,6 +403,7 @@ a:hover{text-decoration-thickness:2px}
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Dustin Engel</a></li>
         <li><a href="e5.html">The E5 framework</a></li>
+        <li><a href="writing.html">Writing and published articles</a></li>
         <li><a href="contact.html">Contact and assessments</a></li>
       </ul>
     </nav>

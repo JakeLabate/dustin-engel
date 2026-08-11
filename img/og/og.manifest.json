@@ -5,23 +5,28 @@
   "pages": {
     "about.html": {
       "image": "img/og/about.png",
-      "fingerprint": "d778e65f46ba2781",
+      "fingerprint": "29226ccda3737724",
       "title": "About Dustin Engel | Founder of Elegant Disruption"
     },
     "contact.html": {
       "image": "img/og/contact.png",
-      "fingerprint": "77a07340ca255596",
+      "fingerprint": "7c3c42e3da67aee4",
       "title": "Contact Dustin Engel | Request an Assessment"
     },
     "e5.html": {
       "image": "img/og/e5.png",
-      "fingerprint": "f1b3a666e95e5e9f",
+      "fingerprint": "8204f5698a04bb50",
       "title": "The E5 Framework | Five Drivers of Enterprise Value"
     },
     "index.html": {
       "image": "img/og/index.png",
-      "fingerprint": "18ce546721ce5c3e",
+      "fingerprint": "614ee6e226550a21",
       "title": "Dustin Engel | AI-Era Strategy Advisory for Founders"
+    },
+    "writing.html": {
+      "image": "img/og/writing.png",
+      "fingerprint": "b5bfa73bbed9eb64",
+      "title": "Writing by Dustin Engel | AI Search, MarTech, and Trust"
     }
   }
 }
